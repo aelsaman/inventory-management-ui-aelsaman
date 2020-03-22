@@ -137,22 +137,22 @@ spec:
                     npm run pact:publish --if-present
                 '''
             }
-            stage('Verify pact') {
-                sh '''#!/bin/bash
-                    npm run pact:verify --if-present
-                '''
-            }
-            stage('Sonar scan') {
-                sh '''#!/bin/bash
+            // stage('Verify pact') {
+            //     sh '''#!/bin/bash
+            //         npm run pact:verify --if-present
+            //     '''
+            // }
+            // stage('Sonar scan') {
+            //     sh '''#!/bin/bash
 
-                if [[ -z "${SONARQUBE_URL}" ]]; then
-                  echo "Skipping Sonar Qube step as Sonar Qube not installed or configured"
-                  exit 0
-                fi
+            //     if [[ -z "${SONARQUBE_URL}" ]]; then
+            //       echo "Skipping Sonar Qube step as Sonar Qube not installed or configured"
+            //       exit 0
+            //     fi
 
-                npm run sonarqube:scan --if-present
-                '''
-            }
+            //     npm run sonarqube:scan --if-present
+            //     '''
+            // }
             stage('Tag release') {
                 sh '''#!/bin/bash
                     set -x
